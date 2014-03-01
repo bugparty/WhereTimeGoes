@@ -8,6 +8,8 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.systemprocess.util.CompareUtil;
+import com.example.systemprocess.util.CompareUtil.*;
 import com.example.systemprocess.model.AppStats;
 
 import java.util.ArrayList;
@@ -15,7 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 /**
  * Created by bowman on 14-3-1.
@@ -55,6 +56,28 @@ public class StatService extends Service {
             mStats = new HashMap<ActivityManager.RunningTaskInfo, AppStats>();
             Log.d(TAG, "StatTask init");
         }
+        private void updateNStopKV(ActivityManager.RunningTaskInfo runningTaskInfo){
+            AppStats app;
+            for(ActivityManager.RunningTaskInfo info: mStats.keySet()){
+                if(CompareUtil.isSamePackage(runningTaskInfo, info)){
+                    app = mStats.get(info);
+                    app.updateNstop();
+                }
+            }
+
+        }
+        private void updateKV(ActivityManager.RunningTaskInfo runningTaskInfo){
+            AppStats app;
+            for(ActivityManager.RunningTaskInfo info: mStats.keySet()){
+                if(CompareUtil.isSamePackage(runningTaskInfo, info)){
+                    app = mStats.get(info);
+                    app.update();
+                }
+            }
+
+
+
+        }
         public HashMap<ActivityManager.RunningTaskInfo,AppStats> getStats(){
             return mStats;
         }
@@ -74,14 +97,37 @@ public class StatService extends Service {
             if(cur == null){
                 mTasksState = APP_NULL;
                 Log.d(TAG, "APP_NULL STATE");
-            }else if(cur.equals(prev)){
+            }else if(CompareUtil.isSamePackage(cur,prev)){
                 mTasksState = APP_NOTCHANING;
                 Log.d(TAG, "APP_NOTCHANG STATE");
             }else{
+                Log.i(TAG, "cur: "+cur.baseActivity.getPackageName());
+                Log.i(TAG, "prev: "+prev.baseActivity);
                 mTasksState = APP_CHANGED;
                 Log.d(TAG, "APP_CHANGED STATE");
             }
+            switch (mTasksState){
+                case APP_NULL:
+                    if(cur!=null){
+                        updateNStopKV(cur);
+                        cur = null;
+                    }
+                    //nothing
+                    break;
+                case APP_NOTCHANING:
+                    if(cur != null)
+                        updateNStopKV(cur);
+                    break;
+                case APP_CHANGED:
+                    updateNStopKV(prev);
+                    updateNStopKV(cur);
+                    prev = cur;
 
+                    break;
+                default:
+                    Log.e(TAG, "unexpactable value");
+                    throw new IllegalArgumentException();
+            }
 
         }
     }
