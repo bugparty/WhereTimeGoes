@@ -1,0 +1,6 @@
+android.support.v7.appcompat
+com.example.systemprocess.app
+com.example.systemprocess.app.test
+com.example.systemprocess.model
+com.example.systemprocess.tests
+com.example.systemprocess.util
