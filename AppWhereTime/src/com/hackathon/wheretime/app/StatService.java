@@ -1,6 +1,7 @@
 package com.hackathon.wheretime.app;
 
 import android.app.ActivityManager;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class StatService extends Service {
     private ActivityManager AM;
     private Timer mTimer;
     private Context mContext;
-
+    private NotificationManager mNM;
     public StatService() {
         super();
 
@@ -161,7 +162,10 @@ public class StatService extends Service {
      */
     @Override
     public void onDestroy() {
+        mTimer.cancel();
+        Log.d(TAG, "mTimer has been stop");
         super.onDestroy();
+
     }
 
     /**
