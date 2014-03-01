@@ -16,7 +16,7 @@
  */
 package com.hackathon.wheretime.ui.indicator;
 
-import com.example.wheretime.R;
+import com.hackathon.wheretime.R;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

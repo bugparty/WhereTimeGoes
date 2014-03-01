@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import com.echo.holographlibrary.Bar;
 import com.echo.holographlibrary.BarGraph;
 import com.echo.holographlibrary.BarGraph.OnBarClickedListener;
-import com.example.wheretime.R;
+
+import com.hackathon.wheretime.R;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -31,7 +32,9 @@ public class DailyBarFragment extends Fragment{
 		ArrayList<Bar> points = new ArrayList<Bar>();
 		Bar d = new Bar();
 		d.setColor(Color.parseColor("#99CC00"));
-		d.setName("工作");
+
+		d.setName("锟斤拷锟斤拷");
+
 		d.setValue(1000);
 		d.setValueString("3.4小时");
 		Bar d2 = new Bar();
@@ -41,12 +44,14 @@ public class DailyBarFragment extends Fragment{
 		d2.setValueString("5小时");
 		Bar d3 = new Bar();
 		d3.setColor(Color.parseColor("#AA66CC"));
-		d3.setName("娱乐");
+
+		d3.setName("锟斤拷锟斤拷");
+
 		d3.setValue(800);
 		d3.setValueString("2.3小时");
 		Bar d4 = new Bar();
 		d4.setColor(Color.parseColor("#892312"));
-		d4.setName("其它 ");
+		d4.setName("锟斤拷锟斤拷 ");
 		d4.setValue(200);
 		d4.setValueString("1.2小时");
 		points.add(d);

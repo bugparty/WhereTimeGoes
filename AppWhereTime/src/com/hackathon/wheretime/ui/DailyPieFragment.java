@@ -6,14 +6,21 @@ import java.util.List;
 import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieGraph.OnSliceClickedListener;
 import com.echo.holographlibrary.PieSlice;
+<<<<<<< HEAD
 import com.example.wheretime.R;
+=======
+import com.hackathon.wheretime.R;
+>>>>>>> 25de700ea30cd0ebb5226067042adad813feae9b
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+<<<<<<< HEAD
 import android.support.v4.app.FragmentTransaction;
+=======
+>>>>>>> 25de700ea30cd0ebb5226067042adad813feae9b
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,16 +89,27 @@ public class DailyPieFragment extends Fragment {
 		List<Annotation> annotations = new ArrayList<Annotation>();
 		Annotation annotation = new Annotation();
 		annotation.setColor("#99CC00");
+<<<<<<< HEAD
 		annotation.setName("¹¤×÷");
+=======
+		annotation.setName("ï¿½ï¿½ï¿½ï¿½");
+>>>>>>> 25de700ea30cd0ebb5226067042adad813feae9b
 		Annotation annotation2 = new Annotation();
 		annotation2.setColor("#FFBB33");
 		annotation2.setName("Ñ§Ï°");
 		Annotation annotation3 = new Annotation();
 		annotation3.setColor("#AA66CC");
+<<<<<<< HEAD
 		annotation3.setName("ÓéÀÖ");
 		Annotation annotation4 = new Annotation();
 		annotation4.setColor("#892312");
 		annotation4.setName("ÆäËû");
+=======
+		annotation3.setName("ï¿½ï¿½ï¿½ï¿½");
+		Annotation annotation4 = new Annotation();
+		annotation4.setColor("#892312");
+		annotation4.setName("ï¿½ï¿½ï¿½ï¿½");
+>>>>>>> 25de700ea30cd0ebb5226067042adad813feae9b
 		annotations.add(annotation);
 		annotations.add(annotation2);
 		annotations.add(annotation3);

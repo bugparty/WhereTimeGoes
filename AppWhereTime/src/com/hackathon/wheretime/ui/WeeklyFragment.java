@@ -5,7 +5,11 @@ import com.echo.holographlibrary.Line;
 import com.echo.holographlibrary.LineGraph;
 import com.echo.holographlibrary.LineGraph.OnPointClickedListener;
 import com.echo.holographlibrary.LinePoint;
+<<<<<<< HEAD
 import com.example.wheretime.R;
+=======
+import com.hackathon.wheretime.R;
+>>>>>>> 25de700ea30cd0ebb5226067042adad813feae9b
 
 import android.graphics.Color;
 import android.os.Bundle;

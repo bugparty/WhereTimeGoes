@@ -3,10 +3,11 @@ package com.hackathon.wheretime.ui;
 import java.math.BigDecimal;
 
 import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 
 public class DetailInfo {
 	
-	private Drawable icon;
+	private DrawableCompat icon;
 
 	private String name;
 	
@@ -43,6 +44,5 @@ public class DetailInfo {
 		bd = bd.setScale(2,BigDecimal.ROUND_HALF_UP);
 		return bd.doubleValue();
 	}
-	
 	
 }

@@ -10,7 +10,7 @@ import com.hackathon.wheretime.AppData.Span;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 	
-	private static final String[] CONTENT = new String[]{"ÉÈÐÎÍ¼", "ÕÛÏßÍ¼"};
+	private static final String[] CONTENT = new String[]{"ï¿½ï¿½ï¿½ï¿½Í¼", "ï¿½ï¿½ï¿½ï¿½Í¼"};
 	
 	private FragmentManager fm;
 
@@ -54,11 +54,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 		return CONTENT[position % CONTENT.length];
 	}
 	
+
 	@Override
 	public int getItemPosition(Object object) {
 		// TODO Auto-generated method stub
 		return POSITION_NONE;
 	}
-	
 	
 }

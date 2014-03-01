@@ -44,6 +44,7 @@
                 android:id="@+id/tab2"
                 android:background="@drawable/sel_buttom_tab"
                 android:clickable="true"
+
                 android:onClick="tab2Click"
                 android:layout_height="match_parent"
                 android:layout_width="0.0dp"
@@ -55,6 +56,22 @@
 			        android:text="详细" 
 			        />
 			</LinearLayout>
+			<LinearLayout android:gravity="center"
+                android:id="@+id/tab3"
+                android:background="@drawable/sel_buttom_tab"
+                android:clickable="true"
+                android:layout_height="match_parent"
+                android:layout_width="0.0dp"
+                android:layout_weight="1">
+			   <TextView android:textColor="#ff000000"
+			        android:gravity="center" 
+			        android:layout_width="wrap_content" 
+			        android:layout_height="wrap_content"
+			        android:text="test" 
+			        />
+			</LinearLayout>
+
+            
         </LinearLayout>
         
     </RelativeLayout>

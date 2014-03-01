@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 
 public class AppData extends Application{
-	
 	public static final int DAILY = 0;
 	
 	public static final int WEEKLY = 1;

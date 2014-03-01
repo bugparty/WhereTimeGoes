@@ -1,6 +1,6 @@
 package com.hackathon.wheretime;
 
-import com.example.wheretime.R;
+import com.hackathon.wheretime.R;
 
 import android.os.Bundle;
 import android.app.Activity;

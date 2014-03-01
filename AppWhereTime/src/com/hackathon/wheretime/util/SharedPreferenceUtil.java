@@ -91,7 +91,6 @@ public class SharedPreferenceUtil {
 		return sp.getString("nick", "");
 	}
 
-	// Í·ÏñÍ¼±ê
 	public int getHeadIcon() {
 		return sp.getInt("headIcon", 0);
 	}
