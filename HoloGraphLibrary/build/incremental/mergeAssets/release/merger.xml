@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="C:\Users\bowman\AndroidStudioProjects\SystemProcess\HoloGraphLibrary\assets" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="C:\Users\bowman\AndroidStudioProjects\SystemProcess\HoloGraphLibrary\build-types\release\assets" />
+    </dataSet>
+
+</merger>
