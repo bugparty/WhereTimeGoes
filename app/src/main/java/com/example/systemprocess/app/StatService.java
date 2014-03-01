@@ -26,10 +26,10 @@ public class StatService extends Service {
     private ActivityManager AM;
     private Timer mTimer;
     private Context mContext;
-    private HashMap<ActivityManager.RunningTaskInfo,AppStats> mStats;
+
     public StatService() {
         super();
-        mStats = new HashMap<ActivityManager.RunningTaskInfo, AppStats>();
+
         Log.d(TAG, "onInit");
     }
     public void startStat(){
@@ -39,16 +39,25 @@ public class StatService extends Service {
         }
 
         mTimer = new Timer();
-        mTimer.schedule(new StatTask(),0,5*1000);
+        mTimer.schedule(mStatTask,0,5*1000);
         Log.d(TAG, "mTimer scheduled");
     }
     public class StatTask extends TimerTask{
-        ActivityManager.RunningTaskInfo cur;
-
+        private HashMap<ActivityManager.RunningTaskInfo,AppStats> mStats;
+        ActivityManager.RunningTaskInfo cur,prev;
+        final static int APP_CHANGED=0;
+        final static int APP_NOTCHANING=1;
+        final static int APP_NULL=2;
+        int mTasksState = APP_NULL;
+        //flag whether the app ha
+        private boolean firstBoot = true;
         public StatTask() {
+            mStats = new HashMap<ActivityManager.RunningTaskInfo, AppStats>();
             Log.d(TAG, "StatTask init");
         }
-
+        public HashMap<ActivityManager.RunningTaskInfo,AppStats> getStats(){
+            return mStats;
+        }
         /**
          * The task to run should be specified in the implementation of the {@code run()}
          * method.
@@ -56,21 +65,27 @@ public class StatService extends Service {
         @Override
         public void run() {
             Log.d(TAG,"stat calcalating");
-            cur = getRunningTaskInfo();
-            if(mStats.containsKey(cur)){
-                 AppStats v = mStats.get(cur);
-                 switch (v.getStatus()){
-                     case AppStats.Running:
-
-                         break;
-                     case AppStats.Stopped:
-                         break;
-                     default:
-                         break;
-                 }
+            if(firstBoot){
+                firstBoot = false;
+                prev = getRunningTaskInfo();
+                return;
             }
+            cur = getRunningTaskInfo();
+            if(cur == null){
+                mTasksState = APP_NULL;
+                Log.d(TAG, "APP_NULL STATE");
+            }else if(cur.equals(prev)){
+                mTasksState = APP_NOTCHANING;
+                Log.d(TAG, "APP_NOTCHANG STATE");
+            }else{
+                mTasksState = APP_CHANGED;
+                Log.d(TAG, "APP_CHANGED STATE");
+            }
+
+
         }
     }
+    private StatTask mStatTask = new StatTask();
     public class StatBinder extends Binder{
         public StatService getService(){
             if(StatService.this.mContext == null)
