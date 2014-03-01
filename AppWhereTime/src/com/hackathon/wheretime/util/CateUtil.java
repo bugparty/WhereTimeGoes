@@ -23,11 +23,11 @@ public class CateUtil {
         query.findInBackground(new FindCallback<AVObject>() {
             public void done(List<AVObject> avObjects, AVException e) {
                 if (e == null) {
-                    Log.d("�ɹ�", "��ѯ��" + avObjects.size() + " ����������������");
+                    Log.d("锟缴癸拷", "锟斤拷询锟斤拷" + avObjects.size() + " 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷");
                     CateUtil.type = (String) avObjects.get(0).get("type");
                     System.out.println(avObjects.get(0).get("type"));
                 } else {
-                    Log.d("ʧ��", "��ѯ����: " + e.getMessage());
+                    Log.d("失锟斤拷", "锟斤拷询锟斤拷锟斤拷: " + e.getMessage());
                 }
             }
         });
