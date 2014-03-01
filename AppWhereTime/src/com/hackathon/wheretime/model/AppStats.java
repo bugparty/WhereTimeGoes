@@ -13,7 +13,7 @@ public class AppStats {
     private ArrayList<TimeFragment> mTimeFragments;
     private TimeFragment mCursor;
     private ComponentName mAppName;
-    private String mAppString;//½ö¹©µ¥Ôª²âÊÔ
+    private String mAppString;//ä»…ä¾›å•å…ƒæµ‹è¯•
     public final  static int Running=1;
     public final static int Stopped=0;
     final String TAG = "AppStats";
@@ -36,7 +36,7 @@ public class AppStats {
     }
 
     /**
-     * ¸üĞÂÊ±¼äÍ³¼Æ²¢Í£Ö¹¼ÆÊ±
+     * æ›´æ–°æ—¶é—´ç»Ÿè®¡å¹¶åœæ­¢è®¡æ—¶
      */
     public void updateNstop(){
         if(mStatus == AppStats.Running){
@@ -51,7 +51,7 @@ public class AppStats {
     }
 
     /**
-     * ¸üĞÂµ±Ç°Ó¦ÓÃÍ³¼ÆÊ±¼ä
+     * æ›´æ–°å½“å‰åº”ç”¨ç»Ÿè®¡æ—¶é—´
      */
     public void update(){
         if(mStatus == AppStats.Running){
@@ -73,7 +73,7 @@ public class AppStats {
     }
 
     /**
-     * ¼ÓÈëĞÂµÄTimeFragment,ÄÚ²¿º¯Êı
+     * åŠ å…¥æ–°çš„TimeFragment,å†…éƒ¨å‡½æ•°
      * @param tf
      */
     protected void add(TimeFragment tf) {
@@ -81,9 +81,9 @@ public class AppStats {
     }
 
     /**
-     * ·µ»Ø¸ÃAppµÄ×ÜºÄÊ±
+     * è¿”å›è¯¥Appçš„æ€»è€—æ—¶
      *
-     * @return long ×Ü¹²µÄºÁÃë
+     * @return long æ€»å…±çš„æ¯«ç§’
      */
     public long getTotalTimeToday() {
         long total = 0;
@@ -103,4 +103,3 @@ public class AppStats {
         this.mStatus = mStatus;
     }
 }
-

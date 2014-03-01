@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class TimeFragment {
     long start;
-    //ºÁÃë´æ´¢
+    //æ¯«ç§’å­˜å‚¨
     long during;
     long lastUpdated;
 
@@ -20,7 +20,7 @@ public class TimeFragment {
     }
 
     /**
-     * Èç¹û×Ô´ÓÉÏ´Î¸üĞÂÊ±¼äºóÓ¦ÓÃÒ»Ö±ÔËĞĞ£¬Ö±½Óµ÷ÓÃ´Ëº¯Êı¸üĞÂÍ³¼ÆÊ±¼ä
+     * å¦‚æœè‡ªä»ä¸Šæ¬¡æ›´æ–°æ—¶é—´ååº”ç”¨ä¸€ç›´è¿è¡Œï¼Œç›´æ¥è°ƒç”¨æ­¤å‡½æ•°æ›´æ–°ç»Ÿè®¡æ—¶é—´
      *
      * @param
      * @return null
@@ -33,9 +33,9 @@ public class TimeFragment {
 
 
     /**
-     * Ìí¼ÓÖ¸¶¨Ê±³¤£¬µ¥Î»ºÁÃë
+     * æ·»åŠ æŒ‡å®šæ—¶é•¿ï¼Œå•ä½æ¯«ç§’
      *
-     * @param millis long±íÊ¾µÄºÁÃëÊ±³¤
+     * @param millis longè¡¨ç¤ºçš„æ¯«ç§’æ—¶é•¿
      */
     public void addDuring(long millis) {
         during += millis;

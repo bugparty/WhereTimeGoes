@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,15 +15,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.hackathon.wheretime.app.StatService;
+import com.hackathon.wheretime.service.IStatService;
 
 import java.util.ArrayList;
 
-import com.hackathon.wheretime.R;
-
 public class ServiceDemoActivity extends ActionBarActivity {
     final String TAG = "ServiceDemoActivity";
-    StatService mService;
+    IStatService mService;
 
     boolean mBound = false;
     /**
@@ -32,7 +31,8 @@ public class ServiceDemoActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(this,StatService.class);
+        Intent intent = new Intent(this,IStatService.class);
+        startService(intent);
         bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
     }
 
@@ -49,11 +49,14 @@ public class ServiceDemoActivity extends ActionBarActivity {
             public void onClick(View v) {
                 ArrayList<String> l = new ArrayList<String>();
                 assert(mService!= null);
-
-
-                l.add(mService.getRunningTaskInfo().topActivity.toString());
+                try{
+                l.add(mService.getCurrentRuningApp());
                 ArrayAdapter adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1,l);
                 lv.setAdapter(adapter);
+            }catch (RemoteException e){
+                    Log.e(TAG, "",e);
+                }
+
             }
         });
     }
@@ -86,8 +89,8 @@ public class ServiceDemoActivity extends ActionBarActivity {
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
-            StatService.StatBinder binder = (StatService.StatBinder) service;
-            mService = binder.getService();
+            mService = IStatService.Stub.asInterface(service);
+
             mBound = true;
         }
 

@@ -33,27 +33,27 @@ public class DailyBarFragment extends Fragment{
 		Bar d = new Bar();
 		d.setColor(Color.parseColor("#99CC00"));
 
-		d.setName("工作");
+		d.setName("宸ヤ綔");
 
 		d.setValue(1000);
-		d.setValueString("3.4小时");
+		d.setValueString("3.4灏忔椂");
 		Bar d2 = new Bar();
 		d2.setColor(Color.parseColor("#FFBB33"));
-		d2.setName("学习");
+		d2.setName("瀛︿範");
 		d2.setValue(2000);
-		d2.setValueString("5小时");
+		d2.setValueString("5灏忔椂");
 		Bar d3 = new Bar();
 		d3.setColor(Color.parseColor("#AA66CC"));
 
-		d3.setName("娱乐");
+		d3.setName("濞变箰");
 
 		d3.setValue(800);
-		d3.setValueString("2.3小时");
+		d3.setValueString("2.3灏忔椂");
 		Bar d4 = new Bar();
 		d4.setColor(Color.parseColor("#892312"));
-		d4.setName("其它 ");
+		d4.setName("鍏跺畠 ");
 		d4.setValue(200);
-		d4.setValueString("1.2小时");
+		d4.setValueString("1.2灏忔椂");
 		points.add(d);
 		points.add(d2);
 		points.add(d3);
