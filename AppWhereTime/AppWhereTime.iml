@@ -76,6 +76,7 @@
     <orderEntry type="library" exported="" name="support-v4-19.0.1" level="project" />
     <orderEntry type="library" exported="" name="httpmime-4.2.4" level="project" />
     <orderEntry type="library" exported="" name="avoscloud-v2.3.2.1" level="project" />
+    <orderEntry type="module" module-name="HoloGraphLibrary" exported="" />
   </component>
 </module>
 

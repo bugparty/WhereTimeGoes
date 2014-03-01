@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AppWhereTime/AppWhereTime.iml" filepath="$PROJECT_DIR$/AppWhereTime/AppWhereTime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HoloGraphLibrary/HoloGraphLibrary.iml" filepath="$PROJECT_DIR$/HoloGraphLibrary/HoloGraphLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/SystemProcess.iml" filepath="$PROJECT_DIR$/SystemProcess.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-support-v7-appcompat/android-support-v7-appcompat.iml" filepath="$PROJECT_DIR$/android-support-v7-appcompat/android-support-v7-appcompat.iml" />
     </modules>
   </component>
 </project>

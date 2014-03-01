@@ -9,6 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/AppWhereTime" />
+            <option value="$PROJECT_DIR$/HoloGraphLibrary" />
+            <option value="$PROJECT_DIR$/android-support-v7-appcompat" />
           </set>
         </option>
       </GradleProjectSettings>

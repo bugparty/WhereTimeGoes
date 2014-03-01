@@ -23,11 +23,11 @@ public class CateUtil {
         query.findInBackground(new FindCallback<AVObject>() {
             public void done(List<AVObject> avObjects, AVException e) {
                 if (e == null) {
-                    Log.d("成功", "查询到" + avObjects.size() + " 条符合条件的数据");
+                    Log.d("�ɹ�", "��ѯ��" + avObjects.size() + " ����������������");
                     CateUtil.type = (String) avObjects.get(0).get("type");
                     System.out.println(avObjects.get(0).get("type"));
                 } else {
-                    Log.d("失败", "查询错误: " + e.getMessage());
+                    Log.d("ʧ��", "��ѯ����: " + e.getMessage());
                 }
             }
         });

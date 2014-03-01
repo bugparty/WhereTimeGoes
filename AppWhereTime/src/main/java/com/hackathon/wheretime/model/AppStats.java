@@ -13,7 +13,7 @@ public class AppStats {
     private ArrayList<TimeFragment> mTimeFragments;
     private TimeFragment mCursor;
     private ComponentName mAppName;
-    private String mAppString;//仅供单元测试
+    private String mAppString;//������Ԫ����
     public final  static int Running=1;
     public final static int Stopped=0;
     final String TAG = "AppStats";
@@ -36,7 +36,7 @@ public class AppStats {
     }
 
     /**
-     * 更新时间统计并停止计时
+     * ����ʱ��ͳ�Ʋ�ֹͣ��ʱ
      */
     public void updateNstop(){
         if(mStatus == AppStats.Running){
@@ -51,7 +51,7 @@ public class AppStats {
     }
 
     /**
-     * 更新当前应用统计时间
+     * ���µ�ǰӦ��ͳ��ʱ��
      */
     public void update(){
         if(mStatus == AppStats.Running){
@@ -73,7 +73,7 @@ public class AppStats {
     }
 
     /**
-     * 加入新的TimeFragment,内部函数
+     * �����µ�TimeFragment,�ڲ�����
      * @param tf
      */
     protected void add(TimeFragment tf) {
@@ -81,9 +81,9 @@ public class AppStats {
     }
 
     /**
-     * 返回该App的总耗时
+     * ���ظ�App���ܺ�ʱ
      *
-     * @return long 总共的毫秒
+     * @return long �ܹ��ĺ���
      */
     public long getTotalTimeToday() {
         long total = 0;

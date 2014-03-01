@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class TimeFragment {
     long start;
-    //毫秒存储
+    //����洢
     long during;
     long lastUpdated;
 
@@ -20,7 +20,7 @@ public class TimeFragment {
     }
 
     /**
-     * 如果自从上次更新时间后应用一直运行，直接调用此函数更新统计时间
+     * ����Դ��ϴθ���ʱ���Ӧ��һֱ���У�ֱ�ӵ��ô˺�������ͳ��ʱ��
      *
      * @param
      * @return null
@@ -33,9 +33,9 @@ public class TimeFragment {
 
 
     /**
-     * 添加指定时长，单位毫秒
+     * ���ָ��ʱ������λ����
      *
-     * @param millis long表示的毫秒时长
+     * @param millis long��ʾ�ĺ���ʱ��
      */
     public void addDuring(long millis) {
         during += millis;
