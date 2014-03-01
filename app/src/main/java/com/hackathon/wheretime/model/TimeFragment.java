@@ -1,4 +1,4 @@
-package com.example.systemprocess.model;
+package com.hackathon.wheretime.model;
 
 import java.util.Calendar;
 import java.util.Date;

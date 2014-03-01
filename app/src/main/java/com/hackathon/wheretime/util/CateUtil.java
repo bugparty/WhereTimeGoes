@@ -1,4 +1,4 @@
-package com.example.systemprocess.util;
+package com.hackathon.wheretime.util;
 
 /**
  * Created by wangzhenzhi on 14-3-1.

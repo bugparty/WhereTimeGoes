@@ -1,4 +1,4 @@
-package com.example.systemprocess.app;
+package com.hackathon.wheretime.app;
 
 import android.app.ActivityManager;
 import android.app.Service;
@@ -8,9 +8,8 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.example.systemprocess.util.CompareUtil;
-import com.example.systemprocess.util.CompareUtil.*;
-import com.example.systemprocess.model.AppStats;
+import com.hackathon.wheretime.util.CompareUtil;
+import com.hackathon.wheretime.model.AppStats;
 
 import java.util.ArrayList;
 import java.util.HashMap;

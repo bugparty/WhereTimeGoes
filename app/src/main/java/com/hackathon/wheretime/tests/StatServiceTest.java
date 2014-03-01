@@ -1,11 +1,9 @@
-package com.example.systemprocess.tests;
+package com.hackathon.wheretime.tests;
 
 import android.app.Application;
 import android.content.Intent;
 import android.os.IBinder;
 import android.test.ServiceTestCase;
-
-import com.example.systemprocess.app.StatService;
 
 /**
  * Created by bowman on 14-3-1.

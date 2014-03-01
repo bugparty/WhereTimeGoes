@@ -1,9 +1,8 @@
-package com.example.systemprocess.tests;
+package com.hackathon.wheretime.tests;
 
 import android.test.InstrumentationTestCase;
 
-import com.example.systemprocess.model.AppStats;
-import com.example.systemprocess.model.TimeFragment;
+import com.hackathon.wheretime.model.TimeFragment;
 
 import java.util.Date;
 

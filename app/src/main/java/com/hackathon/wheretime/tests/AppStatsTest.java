@@ -1,8 +1,8 @@
-package com.example.systemprocess.tests;
+package com.hackathon.wheretime.tests;
 
 import android.test.InstrumentationTestCase;
 
-import com.example.systemprocess.model.AppStats;
+import com.hackathon.wheretime.model.AppStats;
 
 /**
  * Created by bowman on 14-3-1.

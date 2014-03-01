@@ -1,10 +1,9 @@
-package com.example.systemprocess.model;
+package com.hackathon.wheretime.model;
 
 import android.content.ComponentName;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by bowman on 14-3-1.

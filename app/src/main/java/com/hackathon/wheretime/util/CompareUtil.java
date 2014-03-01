@@ -1,4 +1,4 @@
-package com.example.systemprocess.util;
+package com.hackathon.wheretime.util;
 
 import android.app.ActivityManager;
 
