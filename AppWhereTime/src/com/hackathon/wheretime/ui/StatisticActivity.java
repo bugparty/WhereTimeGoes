@@ -7,21 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.OnNavigationListener;
 import android.support.v7.app.ActionBarActivity;
-<<<<<<< HEAD
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
-import com.example.wheretime.R;
+import com.hackathon.wheretime.R;
 import com.hackathon.wheretime.AppData;
 import com.hackathon.wheretime.AppData.Span;
-=======
-import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
-
-import com.hackathon.wheretime.R;
->>>>>>> 25de700ea30cd0ebb5226067042adad813feae9b
 import com.hackathon.wheretime.ui.indicator.TabPageIndicator;
 
 public class StatisticActivity extends ActionBarActivity{

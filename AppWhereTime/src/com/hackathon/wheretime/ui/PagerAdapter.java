@@ -10,7 +10,7 @@ import com.hackathon.wheretime.AppData.Span;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
 	
-	private static final String[] CONTENT = new String[]{"����ͼ", "����ͼ"};
+	private static final String[] CONTENT = new String[]{"part1","part2"};
 	
 	private FragmentManager fm;
 

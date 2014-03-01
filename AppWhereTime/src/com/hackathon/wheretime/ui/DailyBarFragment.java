@@ -33,7 +33,7 @@ public class DailyBarFragment extends Fragment{
 		Bar d = new Bar();
 		d.setColor(Color.parseColor("#99CC00"));
 
-		d.setName("ï¿½ï¿½ï¿½ï¿½");
+		d.setName("¹¤×÷");
 
 		d.setValue(1000);
 		d.setValueString("3.4Ð¡Ê±");
@@ -45,13 +45,13 @@ public class DailyBarFragment extends Fragment{
 		Bar d3 = new Bar();
 		d3.setColor(Color.parseColor("#AA66CC"));
 
-		d3.setName("ï¿½ï¿½ï¿½ï¿½");
+		d3.setName("ÓéÀÖ");
 
 		d3.setValue(800);
 		d3.setValueString("2.3Ð¡Ê±");
 		Bar d4 = new Bar();
 		d4.setColor(Color.parseColor("#892312"));
-		d4.setName("ï¿½ï¿½ï¿½ï¿½ ");
+		d4.setName("ÆäËü ");
 		d4.setValue(200);
 		d4.setValueString("1.2Ð¡Ê±");
 		points.add(d);

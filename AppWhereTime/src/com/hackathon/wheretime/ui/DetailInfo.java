@@ -3,11 +3,10 @@ package com.hackathon.wheretime.ui;
 import java.math.BigDecimal;
 
 import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.drawable.DrawableCompat;
 
 public class DetailInfo {
 	
-	private DrawableCompat icon;
+	private Drawable icon;
 
 	private String name;
 	
