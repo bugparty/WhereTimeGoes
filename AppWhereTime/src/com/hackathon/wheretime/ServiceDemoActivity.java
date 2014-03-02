@@ -1,11 +1,7 @@
 package com.hackathon.wheretime;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -15,16 +11,16 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.hackathon.wheretime.service.IStatService;
-import com.hackathon.wheretime.service.StatService;
+import com.hackathon.wheretime.service.StatServiceConn;
+import com.hackathon.wheretime.util.StatServiceUtil;
 
 import java.util.ArrayList;
 
 public class ServiceDemoActivity extends ActionBarActivity {
     final String TAG = "ServiceDemoActivity";
-    IStatService mService;
-    String currentApp;
-    boolean mBound = false;
+    //IStatService mService;
+    // String currentApp;
+    //boolean mBound = false;
 
     /**
      * Dispatch onStart() to all fragments.  Ensure any created loaders are
@@ -36,6 +32,11 @@ public class ServiceDemoActivity extends ActionBarActivity {
 
     }
 
+    /**
+     * Defines callbacks for service binding, passed to bindService()
+     */
+    private StatServiceConn mConnection = new StatServiceConn();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +44,7 @@ public class ServiceDemoActivity extends ActionBarActivity {
         final Context context = getApplicationContext();
         setContentView(R.layout.activity_stat_service_demo);
 
-        Intent intent = new Intent(this, StatService.class);
-        startService(new Intent(this, IStatService.class));
-        boolean ret = bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        StatServiceUtil.bindStatService(this, mConnection);
 
         final View text = findViewById(R.id.textView);
         final ListView lv = (ListView) findViewById(R.id.tv);
@@ -54,10 +53,13 @@ public class ServiceDemoActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 ArrayList<String> l = new ArrayList<String>();
-
-                l.add(currentApp);
-                ArrayAdapter adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, l);
-                lv.setAdapter(adapter);
+                try {
+                    l.add(mConnection.getService().getCurrentRuningApp());
+                    ArrayAdapter adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, l);
+                    lv.setAdapter(adapter);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -85,31 +87,5 @@ public class ServiceDemoActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Defines callbacks for service binding, passed to bindService()
-     */
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            Log.i(TAG, "ServiceConneted");
-            mService = IStatService.Stub.asInterface(service);
-            try {
-                currentApp = mService.getCurrentRuningApp();
-                mBound = true;
-            } catch (RemoteException e) {
-                e.printStackTrace();
-
-            }
-
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
-        }
-    };
 
 }

@@ -1,14 +1,14 @@
 package com.hackathon.wheretime.ui;
 
-import com.hackathon.wheretime.R;
-import com.hackathon.wheretime.ui.indicator.TabPageIndicator;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hackathon.wheretime.R;
+import com.hackathon.wheretime.ui.indicator.TabPageIndicator;
 
 public class ContentFragment extends Fragment{
 	
@@ -26,8 +26,8 @@ public class ContentFragment extends Fragment{
 		
 		pager = (ViewPager)rootView.findViewById(R.id.pager);
 
-		pagerAdapter = new PagerAdapter(ContentFragment.this.getActivity().getSupportFragmentManager());
-		pager.setAdapter(pagerAdapter);
+        pagerAdapter = new PagerAdapter(ContentFragment.this.getActivity());
+        pager.setAdapter(pagerAdapter);
 
 		indicator = (TabPageIndicator)rootView.findViewById(R.id.indicator);
 		indicator.setViewPager(pager);
