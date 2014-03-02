@@ -30,7 +30,9 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         >
-    	<ImageView android:layout_height="15dp"
+    	<ImageView
+    	    android:id="@+id/pieWarnView" 
+    	    android:layout_height="15dp"
     	    android:layout_width="15dp"
     	    android:src="@drawable/warn"
     	    />

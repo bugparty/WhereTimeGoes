@@ -6,11 +6,14 @@ import java.util.List;
 import com.echo.holographlibrary.PieGraph;
 import com.echo.holographlibrary.PieGraph.OnSliceClickedListener;
 import com.echo.holographlibrary.PieSlice;
+import com.hackathon.wheretime.AppData;
 import com.hackathon.wheretime.R;
+import com.hackathon.wheretime.AppData.Span;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
@@ -20,6 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,37 +48,68 @@ public class DailyPieFragment extends Fragment {
 		
 		
 		overViewGraph = (PieGraph)rootView.findViewById(R.id.dailyGraph);
-		PieSlice slice = new PieSlice();
-		slice.setColor(Color.parseColor("#99CC00"));
-		slice.setValue(2);
-		overViewGraph.addSlice(slice);
-		slice = new PieSlice();
-		slice.setColor(Color.parseColor("#FFBB33"));
-		slice.setValue(3);
-		overViewGraph.addSlice(slice);
-		slice = new PieSlice();
-		slice.setColor(Color.parseColor("#AA66CC"));
-		slice.setValue(8);
-		overViewGraph.addSlice(slice);
-		slice = new PieSlice();
-		slice.setColor(Color.parseColor("#892312"));
-		slice.setValue(7);
-		overViewGraph.addSlice(slice);		
-		overViewGraph.setCoreValue("6.5小时");
-		
-		overViewGraph.setOnSliceClickedListener(new OnSliceClickedListener() {
+		if(AppData.selectedSpan == Span.DAILY){
+			PieSlice slice = new PieSlice();
+			slice.setColor(Color.parseColor("#99CC00"));
+			slice.setValue(2);
+			overViewGraph.addSlice(slice);
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#FFBB33"));
+			slice.setValue(3);
+			overViewGraph.addSlice(slice);
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#AA66CC"));
+			slice.setValue(8);
+			overViewGraph.addSlice(slice);
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#892312"));
+			slice.setValue(7);
+			overViewGraph.addSlice(slice);		
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#674256"));
+			slice.setValue(3);
+			overViewGraph.addSlice(slice);
+			overViewGraph.setCoreValue("6.5小时");
+		}else{
+			((TextView)rootView.findViewById(R.id.warnView)).setVisibility(View.GONE);
+			((ImageView)rootView.findViewById(R.id.pieWarnView)).setVisibility(View.GONE);
+
 			
-			@Override
-			public void onClick(int index) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(DailyPieFragment.this.getActivity(),DetailActivity.class);
-				Bundle bundle = new Bundle();
-				bundle.putString("test","test");
-				startActivity(intent);
+			PieSlice slice = new PieSlice();
+			slice.setColor(Color.parseColor("#99CC00"));
+			slice.setValue(3);
+			overViewGraph.addSlice(slice);
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#FFBB33"));
+			slice.setValue(4);
+			overViewGraph.addSlice(slice);
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#AA66CC"));
+			slice.setValue(4);
+			overViewGraph.addSlice(slice);
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#892312"));
+			slice.setValue(5);
+			overViewGraph.addSlice(slice);		
+			slice = new PieSlice();
+			slice.setColor(Color.parseColor("#674256"));
+			slice.setValue(3);
+			overViewGraph.addSlice(slice);
+			overViewGraph.setCoreValue("34.2小时");
+		}
+		overViewGraph.setOnSliceClickedListener(new OnSliceClickedListener() {
 				
-				
-			}
-		});
+				@Override
+				public void onClick(int index) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(DailyPieFragment.this.getActivity(),DetailActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putString("test","test");
+					startActivity(intent);
+					
+					
+				}
+			});
 		return rootView;
 	}
 	
@@ -86,17 +121,21 @@ public class DailyPieFragment extends Fragment {
 		annotation.setName("工作");
 		Annotation annotation2 = new Annotation();
 		annotation2.setColor("#FFBB33");
-		annotation2.setName("学习");
+		annotation2.setName("影视");
 		Annotation annotation3 = new Annotation();
 		annotation3.setColor("#AA66CC");
-		annotation3.setName("娱乐");
+		annotation3.setName("游戏");
 		Annotation annotation4 = new Annotation();
 		annotation4.setColor("#892312");
-		annotation4.setName("其它");
+		annotation4.setName("社交");
+		Annotation annotation5 = new Annotation();
+		annotation5.setName("其他");
+		annotation5.setColor("#874256");
 		annotations.add(annotation);
 		annotations.add(annotation2);
 		annotations.add(annotation3);
 		annotations.add(annotation4);
+		annotations.add(annotation5);
 		return annotations;
 	}
 	

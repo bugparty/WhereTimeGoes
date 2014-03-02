@@ -41,7 +41,7 @@ public class StatisticActivity extends ActionBarActivity{
 		actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
-		actionBar.setIcon(AppData.getContext().getResources().getDrawable(R.drawable.ic_actionbar));
+		actionBar.setIcon(AppData.getContext().getResources().getDrawable(R.drawable.ic_logo));
 		actionBar.setTitle(getStrDate());
 		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer,
                 R.string.drawer_open, R.string.drawer_close) {
@@ -56,8 +56,6 @@ public class StatisticActivity extends ActionBarActivity{
         };
         
         drawerLayout.setDrawerListener(drawerToggle); 
-		
-		
 		contentFragment = new ContentFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, contentFragment).commit();
