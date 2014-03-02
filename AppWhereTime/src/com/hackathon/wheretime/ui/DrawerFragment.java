@@ -31,6 +31,7 @@ public class DrawerFragment extends Fragment{
         List<String> items = new ArrayList<String>();
         items.add("每天");
         items.add("每周");
+        items.add("每月");
         drawerAdapter = new DrawerAdapter(listView,items);
         listView.setAdapter(drawerAdapter);
         listView.setItemChecked(0, true);
@@ -49,5 +50,7 @@ public class DrawerFragment extends Fragment{
         });
 		return rootView;
 	}
+	
+	
 	
 }

@@ -98,4 +98,9 @@ public class StatisticActivity extends ActionBarActivity{
 	}
 	
 	
+	public void shareClick(View view){
+		return;
+	}
+	
+	
 }
