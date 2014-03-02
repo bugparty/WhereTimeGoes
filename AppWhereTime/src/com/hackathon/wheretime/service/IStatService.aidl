@@ -6,5 +6,6 @@ package com.hackathon.wheretime.service;
 interface IStatService {
     long getTodayStats(String category);
     String getCurrentRuningApp();
+    double [] getStatsBy
 
 }
