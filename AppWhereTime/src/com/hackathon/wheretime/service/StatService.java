@@ -5,13 +5,12 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.hackathon.wheretime.util.CompareUtil;
 import com.hackathon.wheretime.model.AppStats;
+import com.hackathon.wheretime.util.CompareUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +29,6 @@ public class StatService extends Service {
     private NotificationManager mNM;
     public StatService() {
         super();
-
         Log.d(TAG, "onInit");
     }
 
@@ -41,6 +39,7 @@ public class StatService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreate");
+        startStat();
     }
 
     public void startStat(){
@@ -142,15 +141,35 @@ public class StatService extends Service {
         }
     }
     private StatTask mStatTask = new StatTask();
+
+    public HashMap<ActivityManager.RunningTaskInfo, AppStats> getStats() {
+        return mStatTask.getStats();
+    }
+
     private final  IStatService.Stub mBinder = new IStatService.Stub() {
         @Override
         public long getTodayStats(String category) throws RemoteException {
-            return 0;
+            long time = 0;
+            HashMap<ActivityManager.RunningTaskInfo, AppStats> map = StatService.this.getStats();
+            for (AppStats task : map.values()) {
+                if (task.getCategory().equals(category))
+                    time += task.getTotalTimeToday();
+            }
+            return time;
         }
 
+        /**
+         * 获取当前在屏幕上的进程
+         *
+         * @return 获取当前正在运行的app包名，没有则返回null
+         * @throws RemoteException
+         */
         @Override
         public String getCurrentRuningApp() throws RemoteException {
-            return null;
+            ActivityManager.RunningTaskInfo info = StatService.this.getRunningTaskInfo();
+            if (info == null)
+                return null;
+            return info.baseActivity.getPackageName();
         }
     };
     public ActivityManager.RunningTaskInfo getRunningTaskInfo(){
@@ -202,6 +221,7 @@ public class StatService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
+
         return mBinder;
     }
 

@@ -3,6 +3,8 @@ package com.hackathon.wheretime.model;
 import android.content.ComponentName;
 import android.util.Log;
 
+import com.hackathon.wheretime.util.CateUtil;
+
 import java.util.ArrayList;
 
 /**
@@ -10,10 +12,11 @@ import java.util.ArrayList;
  */
 public class AppStats {
     private int mStatus;
+    private String category;
     private ArrayList<TimeFragment> mTimeFragments;
     private TimeFragment mCursor;
     private ComponentName mAppName;
-    private String mAppString;//仅供单元测试
+    private String mPackageName;
     public final  static int Running=1;
     public final static int Stopped=0;
     final String TAG = "AppStats";
@@ -22,15 +25,19 @@ public class AppStats {
         mStatus = AppStats.Running;
         mCursor = new TimeFragment();
     }
-    public AppStats(String mAppString) {
+
+    public AppStats(String mPackageName) {
         this();
-        this.mAppString = mAppString;
+        this.mPackageName = mPackageName;
+        this.category = CateUtil.getCateBypackage(mPackageName);
 
     }
 
     public AppStats(ComponentName mAppName) {
         this();
         this.mAppName = mAppName;
+        this.mPackageName = mAppName.getPackageName();
+        this.category = CateUtil.getCateBypackage(mPackageName);
         mTimeFragments = new ArrayList<TimeFragment>();
         mStatus = AppStats.Running;
     }
@@ -69,7 +76,7 @@ public class AppStats {
         if (mAppName != null) {
             return mAppName.getClassName();
         }
-        return mAppString;
+        return mPackageName;
     }
 
     /**
@@ -101,5 +108,9 @@ public class AppStats {
 
     private void setStatue(int mStatus) {
         this.mStatus = mStatus;
+    }
+
+    public String getCategory() {
+        return category;
     }
 }
