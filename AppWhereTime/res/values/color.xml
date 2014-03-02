@@ -4,4 +4,5 @@
     <color name="tab_normal">#ffe5e5e5</color>
     <color name="tab_pressed">#ffffffff</color>
     
+    <color name="bar">#e6000000</color>
 </resources>

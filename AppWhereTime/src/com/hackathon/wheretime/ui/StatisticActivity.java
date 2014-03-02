@@ -1,31 +1,33 @@
 package com.hackathon.wheretime.ui;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBar.OnNavigationListener;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import com.hackathon.wheretime.R;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import com.hackathon.wheretime.AppData;
-import com.hackathon.wheretime.AppData.Span;
-import com.hackathon.wheretime.ui.indicator.TabPageIndicator;
+import com.hackathon.wheretime.R;
 
 public class StatisticActivity extends ActionBarActivity{
-
-	private ViewPager pager;
 	
-	private TabPageIndicator indicator;
+	public DrawerLayout drawerLayout;
+	
+	public ActionBarDrawerToggle drawerToggle;
 	
 	private ActionBar actionBar;
 	
-	private PagerAdapter pagerAdapter;
+	public ContentFragment contentFragment;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,52 +35,66 @@ public class StatisticActivity extends ActionBarActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statistic);
 		
+		drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        drawerLayout.setScrimColor(Color.argb(100, 0, 0, 0));
 		actionBar = getSupportActionBar();
-		
-		SpinnerAdapter adapter = ArrayAdapter.createFromResource(this, R.array.span, android.R.layout.simple_spinner_dropdown_item);
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-		actionBar.setListNavigationCallbacks(adapter, new DropDownListener());
-		
-		
-		pager = (ViewPager)findViewById(R.id.pager);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setIcon(AppData.getContext().getResources().getDrawable(R.drawable.ic_actionbar));
+		actionBar.setTitle(getStrDate());
+		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer,
+                R.string.drawer_open, R.string.drawer_close) {
+            public void onDrawerClosed(View view) {
+            	super.onDrawerClosed(view);
+            }
 
-		pagerAdapter = new PagerAdapter(getSupportFragmentManager());
-		pager.setAdapter(pagerAdapter);
-
-		indicator = (TabPageIndicator)findViewById(R.id.indicator);
-		indicator.setViewPager(pager);
+            public void onDrawerOpened(View drawerView) {
+            	super.onDrawerOpened(drawerView);
+            }
+            
+        };
+        
+        drawerLayout.setDrawerListener(drawerToggle); 
+		
+		
+		contentFragment = new ContentFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame, contentFragment).commit();
+		
+        fragmentManager.beginTransaction().replace(R.id.left_drawer, new DrawerFragment()).commit();
+		
+		
 	}
 	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		return super.onCreateOptionsMenu(menu);
+	}
 	
-	public class DropDownListener implements OnNavigationListener{
-		
-		String[] listNames = getResources().getStringArray(R.array.span);
-
-		@Override
-		public boolean onNavigationItemSelected(int arg0, long arg1) {
-			// TODO Auto-generated method stub
-			if(arg0 == 0){
-				AppData.selectedSpan = Span.DAILY;
-				Log.d("Main","daily " + arg0);
-			}
-			else{
-				AppData.selectedSpan = Span.WEEKLY;
-				Log.d("Main","WEEKLY " + arg0);
-			}
-			pagerAdapter.notifyDataSetChanged();
-			
-            return true;
-		}
-		
+	private String getStrDate(){
+		Calendar calendar = Calendar.getInstance();
+		Date date = calendar.getTime();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日  E");
+		String strDate = format.format(date);
+		return strDate;
+	}
+	
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onPostCreate(savedInstanceState);
+		drawerToggle.syncState();
 	}
 	
 	
 	public void tab1Click(View view){
-		pager.setCurrentItem(0);
+		contentFragment.pager.setCurrentItem(0);
 	}
 	
 	public void tab2Click(View view){
-		pager.setCurrentItem(1);
+		contentFragment.pager.setCurrentItem(1);
 	}
 	
 	
