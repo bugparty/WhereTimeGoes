@@ -3,6 +3,8 @@ package com.hackathon.wheretime.model;
 import android.content.ComponentName;
 import android.util.Log;
 
+import com.hackathon.wheretime.util.CateUtil;
+
 import java.util.ArrayList;
 
 /**
@@ -10,10 +12,11 @@ import java.util.ArrayList;
  */
 public class AppStats {
     private int mStatus;
+    private String category;
     private ArrayList<TimeFragment> mTimeFragments;
     private TimeFragment mCursor;
     private ComponentName mAppName;
-    private String mAppString;//½ö¹©µ¥Ôª²âÊÔ
+    private String mPackageName;
     public final  static int Running=1;
     public final static int Stopped=0;
     final String TAG = "AppStats";
@@ -22,21 +25,25 @@ public class AppStats {
         mStatus = AppStats.Running;
         mCursor = new TimeFragment();
     }
-    public AppStats(String mAppString) {
+
+    public AppStats(String mPackageName) {
         this();
-        this.mAppString = mAppString;
+        this.mPackageName = mPackageName;
+        this.category = CateUtil.getCateBypackage(mPackageName);
 
     }
 
     public AppStats(ComponentName mAppName) {
         this();
         this.mAppName = mAppName;
+        this.mPackageName = mAppName.getPackageName();
+        this.category = CateUtil.getCateBypackage(mPackageName);
         mTimeFragments = new ArrayList<TimeFragment>();
         mStatus = AppStats.Running;
     }
 
     /**
-     * ¸üĞÂÊ±¼äÍ³¼Æ²¢Í£Ö¹¼ÆÊ±
+     * æ›´æ–°æ—¶é—´ç»Ÿè®¡å¹¶åœæ­¢è®¡æ—¶
      */
     public void updateNstop(){
         if(mStatus == AppStats.Running){
@@ -51,7 +58,7 @@ public class AppStats {
     }
 
     /**
-     * ¸üĞÂµ±Ç°Ó¦ÓÃÍ³¼ÆÊ±¼ä
+     * æ›´æ–°å½“å‰åº”ç”¨ç»Ÿè®¡æ—¶é—´
      */
     public void update(){
         if(mStatus == AppStats.Running){
@@ -69,11 +76,11 @@ public class AppStats {
         if (mAppName != null) {
             return mAppName.getClassName();
         }
-        return mAppString;
+        return mPackageName;
     }
 
     /**
-     * ¼ÓÈëĞÂµÄTimeFragment,ÄÚ²¿º¯Êı
+     * åŠ å…¥æ–°çš„TimeFragment,å†…éƒ¨å‡½æ•°
      * @param tf
      */
     protected void add(TimeFragment tf) {
@@ -81,9 +88,9 @@ public class AppStats {
     }
 
     /**
-     * ·µ»Ø¸ÃAppµÄ×ÜºÄÊ±
+     * è¿”å›è¯¥Appçš„æ€»è€—æ—¶
      *
-     * @return long ×Ü¹²µÄºÁÃë
+     * @return long æ€»å…±çš„æ¯«ç§’
      */
     public long getTotalTimeToday() {
         long total = 0;
@@ -102,5 +109,8 @@ public class AppStats {
     private void setStatue(int mStatus) {
         this.mStatus = mStatus;
     }
-}
 
+    public String getCategory() {
+        return category;
+    }
+}

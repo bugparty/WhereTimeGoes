@@ -3,21 +3,11 @@ package com.hackathon.wheretime.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.echo.holographlibrary.PieGraph;
-import com.echo.holographlibrary.PieGraph.OnSliceClickedListener;
-import com.echo.holographlibrary.PieSlice;
-import com.hackathon.wheretime.AppData;
-import com.hackathon.wheretime.R;
-import com.hackathon.wheretime.AppData.Span;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,21 +17,36 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.echo.holographlibrary.PieGraph;
+import com.echo.holographlibrary.PieGraph.OnSliceClickedListener;
+import com.echo.holographlibrary.PieSlice;
+import com.hackathon.wheretime.AppData;
+import com.hackathon.wheretime.AppData.Span;
+import com.hackathon.wheretime.R;
+import com.hackathon.wheretime.service.StatServiceConn;
+import com.hackathon.wheretime.util.StatServiceUtil;
+
 
 public class DailyPieFragment extends Fragment {
-	
-	
-	private PieGraph overViewGraph;
-	
-	private ListView annotationList;
 
-	@Override
+    public DailyPieFragment(Context context) {
+        StatServiceUtil.bindStatService(context, mConnection);
+    }
+    
+
+
+    private PieGraph overViewGraph;
+
+    private ListView annotationList;
+    private StatServiceConn mConnection = new StatServiceConn();
+
+    @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View rootView = inflater.inflate(R.layout.fragment_daily_pie_statistic, container,false);
-		
-		annotationList = (ListView)rootView.findViewById(R.id.annotationView);
+
+        annotationList = (ListView)rootView.findViewById(R.id.annotationView);
 		List<Annotation> annotations = createAnnotationns();
 		Log.d("Main","first annotation" + annotations.get(0).getColor() + annotations.get(0).getName());
 		annotationList.setAdapter(new AnnotationAdapter(this.getActivity(), annotations));

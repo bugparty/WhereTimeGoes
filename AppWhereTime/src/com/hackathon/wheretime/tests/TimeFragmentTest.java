@@ -8,7 +8,7 @@ import java.util.Date;
 
 /**
  * Created by bowman on 14-3-1.
- * ����ģ�͵ĵ�Ԫ���ԣ���Ҳ���Դ�����ѧ����Щ����÷�
+ * 数据模型的单元测试，你也可以从这里学到这些类的用法
  */
 public class TimeFragmentTest extends InstrumentationTestCase {
     public void testTimeFragment() throws Exception {

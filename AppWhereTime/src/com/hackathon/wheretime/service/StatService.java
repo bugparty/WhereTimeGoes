@@ -1,15 +1,16 @@
-package com.hackathon.wheretime.app;
+package com.hackathon.wheretime.service;
 
 import android.app.ActivityManager;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
-import com.hackathon.wheretime.util.CompareUtil;
 import com.hackathon.wheretime.model.AppStats;
+import com.hackathon.wheretime.util.CompareUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,16 +23,25 @@ import java.util.TimerTask;
  */
 public class StatService extends Service {
     public final String TAG = "StatService";
-    private final IBinder mBinder = new StatBinder();
     private ActivityManager AM;
     private Timer mTimer;
     private Context mContext;
-
+    private NotificationManager mNM;
     public StatService() {
         super();
-
         Log.d(TAG, "onInit");
     }
+
+    /**
+     * Called by the system when the service is first created.  Do not call this method directly.
+     */
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d(TAG, "onCreate");
+        startStat();
+    }
+
     public void startStat(){
         if(mContext == null){
             mContext = getApplicationContext();
@@ -49,7 +59,7 @@ public class StatService extends Service {
         final static int APP_NOTCHANING=1;
         final static int APP_NULL=2;
         int mTasksState = APP_NULL;
-        //flag whether the app ha
+        //flag whether the service ha
         private boolean firstBoot = true;
         public StatTask() {
             mStats = new HashMap<ActivityManager.RunningTaskInfo, AppStats>();
@@ -131,15 +141,37 @@ public class StatService extends Service {
         }
     }
     private StatTask mStatTask = new StatTask();
-    public class StatBinder extends Binder{
-        public StatService getService(){
-            if(StatService.this.mContext == null)
-                StatService.this.mContext = StatService.this.getApplicationContext();
-            startStat();
-            return StatService.this;
+
+    public HashMap<ActivityManager.RunningTaskInfo, AppStats> getStats() {
+        return mStatTask.getStats();
+    }
+
+    private final  IStatService.Stub mBinder = new IStatService.Stub() {
+        @Override
+        public long getTodayStats(String category) throws RemoteException {
+            long time = 0;
+            HashMap<ActivityManager.RunningTaskInfo, AppStats> map = StatService.this.getStats();
+            for (AppStats task : map.values()) {
+                if (task.getCategory().equals(category))
+                    time += task.getTotalTimeToday();
+            }
+            return time;
         }
 
-    }
+        /**
+         * 获取当前在屏幕上的进程
+         *
+         * @return 获取当前正在运行的app包名，没有则返回null
+         * @throws RemoteException
+         */
+        @Override
+        public String getCurrentRuningApp() throws RemoteException {
+            ActivityManager.RunningTaskInfo info = StatService.this.getRunningTaskInfo();
+            if (info == null)
+                return null;
+            return info.baseActivity.getPackageName();
+        }
+    };
     public ActivityManager.RunningTaskInfo getRunningTaskInfo(){
         if(AM == null){
             AM = (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
@@ -161,7 +193,10 @@ public class StatService extends Service {
      */
     @Override
     public void onDestroy() {
+        mTimer.cancel();
+        Log.d(TAG, "mTimer has been stop");
         super.onDestroy();
+
     }
 
     /**
@@ -186,6 +221,7 @@ public class StatService extends Service {
      */
     @Override
     public IBinder onBind(Intent intent) {
+
         return mBinder;
     }
 
