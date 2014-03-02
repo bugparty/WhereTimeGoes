@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:background="#e6000000"
+>
+    <ListView
+          android:orientation="vertical"
+          android:id="@+id/drawerListView"
+          android:layout_width="match_parent"
+          android:choiceMode="singleChoice"
+          android:paddingTop="20dip"
+          android:divider="@android:color/transparent"
+          android:dividerHeight="0dp"
+          android:background="#e6000000"
+          android:layout_height="400dp"/>
+    
+        <TextView
+            android:id="@+id/share"
+	        android:layout_width="wrap_content"
+	        android:layout_gravity="center"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@id/drawerListView"
+	        android:layout_alignParentLeft="true"
+	        android:layout_marginLeft="47dp"
+	        android:layout_marginTop="3dp"
+	        android:textSize="15dip"
+	        android:textColor="#ffffff"
+	        android:clickable="true"
+	        android:onClick="shareClick"
+	        android:text="分享到微博"
+	        />
+        <CheckBox
+            android:layout_width="200dp"
+	        android:layout_gravity="center"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@id/share"
+	        android:layout_marginLeft="30dp"
+	        android:layout_marginTop="20dp"
+	        android:textSize="15dp"
+	        android:text="同步到云端"
+	        android:textColor="#ffffff"
+            />
+    
+</RelativeLayout>
+
+	
+
+
+

@@ -10,8 +10,10 @@ import android.content.Context;
 import android.graphics.Color;
 import com.hackathon.wheretime.R;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -26,13 +28,16 @@ public class DetailActivity extends ActionBarActivity{
 	
 	private ListView detailList;
 	
+	private ActionBar actionBar;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_detail_statistic);
 		
-		
+		actionBar = getSupportActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 		detailList = (ListView)findViewById(R.id.detailView);
 		detailList.setDivider(AppData.getContext().getResources().getDrawable(R.drawable.list_divider));
@@ -63,6 +68,20 @@ public class DetailActivity extends ActionBarActivity{
 		}
 		return detailInfos;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch(item.getItemId()){
+		case android.R.id.home:
+			finish();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	
 	
 	
 	public class DetailAdapter extends BaseAdapter{
